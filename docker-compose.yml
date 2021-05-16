@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build:
+      # context for Dockerfile
+      context: .
+      # relative path to dockerfile
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /home/node/app/node_modules
+      - .:/home/node/app
+  # new service to run tests
+  tests:
+    build:
+      # context for Dockerfile
+      context: .
+      # relative path to dockerfile
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /home/node/app/node_modules
+      - .:/home/node/app
+    # overwrite starting command
+    command: ["npm", "run", "test"]
