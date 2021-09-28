@@ -9,7 +9,7 @@ services:
 
 # commands that get executed before our command is run
 before_install:
-  - docker build -f -t jmonteroers/docker-react Dockerfile.dev .
+  - docker build -f Dockerfile.dev -t jmonteroers/docker-react .
 
 # commands to run test suite
 script:
