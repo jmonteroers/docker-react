@@ -1,0 +1,16 @@
+language: generic
+
+# we need superuser permissions to run Docker
+sudo: required
+
+# we need a copy of Docker ready to go!
+services:
+  - docker
+
+# commands that get executed before our command is run
+before_install:
+  - docker build -f -t jmonteroers/docker-react Dockerfile.dev .
+
+# commands to run test suite
+script:
+  - docker run -e CI=true jmonteroers/docker-react npm run test
